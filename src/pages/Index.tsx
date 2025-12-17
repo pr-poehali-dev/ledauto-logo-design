@@ -9,8 +9,6 @@ import Cart from '@/components/Cart';
 
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [selectedColor, setSelectedColor] = useState<string>('all');
-  const [selectedCompatibility, setSelectedCompatibility] = useState<string>('all');
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   const { addToCart, totalItems } = useCart();
@@ -18,71 +16,169 @@ const Index = () => {
   const products = [
     {
       id: 1,
-      name: 'LED Фары Premium',
-      category: 'headlights',
-      price: 12990,
+      name: 'Штатные LED противотуманные фары H11',
+      category: 'fog-lights',
+      price: 2990,
       image: 'https://cdn.poehali.dev/projects/7645dc55-ece7-471e-b696-d0442f475ace/files/292d2145-c5bd-4952-8460-9383fc848cea.jpg',
-      color: 'blue',
-      compatibility: 'universal',
-      badge: 'Хит продаж'
+      badge: 'Хит'
     },
     {
       id: 2,
-      name: 'LED Подсветка Салона',
-      category: 'interior',
-      price: 4990,
+      name: 'Дневные ходовые огни 12-24V универсальные',
+      category: 'drl',
+      price: 1490,
       image: 'https://cdn.poehali.dev/projects/7645dc55-ece7-471e-b696-d0442f475ace/files/cb5f6dc9-3f76-4220-8902-c18d5b323da0.jpg',
-      color: 'multicolor',
-      compatibility: 'universal',
-      badge: 'Новинка'
-    },
-    {
-      id: 3,
-      name: 'Неоновая Подсветка Днища',
-      category: 'underglow',
-      price: 8990,
-      image: 'https://cdn.poehali.dev/projects/7645dc55-ece7-471e-b696-d0442f475ace/files/7274c55e-4d0e-4b75-bc10-1843e09c47ed.jpg',
-      color: 'purple',
-      compatibility: 'sedan',
-      badge: 'Топ выбор'
-    },
-    {
-      id: 4,
-      name: 'LED Фары Sport',
-      category: 'headlights',
-      price: 15990,
-      image: 'https://cdn.poehali.dev/projects/7645dc55-ece7-471e-b696-d0442f475ace/files/292d2145-c5bd-4952-8460-9383fc848cea.jpg',
-      color: 'white',
-      compatibility: 'suv',
       badge: ''
     },
     {
-      id: 5,
-      name: 'LED Ленты RGB',
-      category: 'interior',
-      price: 3490,
+      id: 3,
+      name: 'C5W LED салон 36мм белый',
+      category: 'c5w',
+      price: 150,
       image: 'https://cdn.poehali.dev/projects/7645dc55-ece7-471e-b696-d0442f475ace/files/cb5f6dc9-3f76-4220-8902-c18d5b323da0.jpg',
-      color: 'multicolor',
-      compatibility: 'universal',
+      badge: ''
+    },
+    {
+      id: 4,
+      name: 'T10 W5W LED габариты белые',
+      category: 't10',
+      price: 120,
+      image: 'https://cdn.poehali.dev/projects/7645dc55-ece7-471e-b696-d0442f475ace/files/cb5f6dc9-3f76-4220-8902-c18d5b323da0.jpg',
+      badge: 'Популярно'
+    },
+    {
+      id: 5,
+      name: 'P21W LED стоп-сигнал красный',
+      category: 'p21',
+      price: 180,
+      image: 'https://cdn.poehali.dev/projects/7645dc55-ece7-471e-b696-d0442f475ace/files/7274c55e-4d0e-4b75-bc10-1843e09c47ed.jpg',
       badge: ''
     },
     {
       id: 6,
-      name: 'Неоновая Подсветка Колес',
-      category: 'underglow',
-      price: 6990,
+      name: 'T5 LED панель приборов зеленая',
+      category: 't5-panel',
+      price: 80,
+      image: 'https://cdn.poehali.dev/projects/7645dc55-ece7-471e-b696-d0442f475ace/files/cb5f6dc9-3f76-4220-8902-c18d5b323da0.jpg',
+      badge: ''
+    },
+    {
+      id: 7,
+      name: 'LED фарная лампа H4 6000K',
+      category: 'led-headlight',
+      price: 3990,
+      image: 'https://cdn.poehali.dev/projects/7645dc55-ece7-471e-b696-d0442f475ace/files/292d2145-c5bd-4952-8460-9383fc848cea.jpg',
+      badge: 'Новинка'
+    },
+    {
+      id: 8,
+      name: 'Диоды 24V T10 для грузовых',
+      category: '24v',
+      price: 250,
+      image: 'https://cdn.poehali.dev/projects/7645dc55-ece7-471e-b696-d0442f475ace/files/cb5f6dc9-3f76-4220-8902-c18d5b323da0.jpg',
+      badge: ''
+    },
+    {
+      id: 9,
+      name: 'Галогеновые лампы TORINO HOD +50% H4',
+      category: 'halogen-torino',
+      price: 890,
+      image: 'https://cdn.poehali.dev/projects/7645dc55-ece7-471e-b696-d0442f475ace/files/292d2145-c5bd-4952-8460-9383fc848cea.jpg',
+      badge: ''
+    },
+    {
+      id: 10,
+      name: 'Лампы KOITO H7 Япония',
+      category: 'koito',
+      price: 1590,
+      image: 'https://cdn.poehali.dev/projects/7645dc55-ece7-471e-b696-d0442f475ace/files/292d2145-c5bd-4952-8460-9383fc848cea.jpg',
+      badge: 'Премиум'
+    },
+    {
+      id: 11,
+      name: 'Галогеновые автолампы H1 55W',
+      category: 'halogen',
+      price: 290,
+      image: 'https://cdn.poehali.dev/projects/7645dc55-ece7-471e-b696-d0442f475ace/files/292d2145-c5bd-4952-8460-9383fc848cea.jpg',
+      badge: ''
+    },
+    {
+      id: 12,
+      name: 'R5W лампа накаливания',
+      category: 'incandescent',
+      price: 50,
+      image: 'https://cdn.poehali.dev/projects/7645dc55-ece7-471e-b696-d0442f475ace/files/cb5f6dc9-3f76-4220-8902-c18d5b323da0.jpg',
+      badge: ''
+    },
+    {
+      id: 13,
+      name: 'Светодиодная лента 12V RGB 5м',
+      category: 'led-strip',
+      price: 1890,
       image: 'https://cdn.poehali.dev/projects/7645dc55-ece7-471e-b696-d0442f475ace/files/7274c55e-4d0e-4b75-bc10-1843e09c47ed.jpg',
-      color: 'orange',
-      compatibility: 'universal',
+      badge: 'Хит'
+    },
+    {
+      id: 14,
+      name: 'Ксенон H7 6000K комплект',
+      category: 'xenon',
+      price: 4990,
+      image: 'https://cdn.poehali.dev/projects/7645dc55-ece7-471e-b696-d0442f475ace/files/292d2145-c5bd-4952-8460-9383fc848cea.jpg',
+      badge: ''
+    },
+    {
+      id: 15,
+      name: 'Щётки стеклоочистителя бескаркасные 55см',
+      category: 'wipers',
+      price: 890,
+      image: 'https://cdn.poehali.dev/projects/7645dc55-ece7-471e-b696-d0442f475ace/files/cb5f6dc9-3f76-4220-8902-c18d5b323da0.jpg',
+      badge: ''
+    },
+    {
+      id: 16,
+      name: 'Ароматизатор подвесной Новая машина',
+      category: 'air-freshener',
+      price: 150,
+      image: 'https://cdn.poehali.dev/projects/7645dc55-ece7-471e-b696-d0442f475ace/files/cb5f6dc9-3f76-4220-8902-c18d5b323da0.jpg',
+      badge: ''
+    },
+    {
+      id: 17,
+      name: 'Держатель для телефона магнитный',
+      category: 'accessories',
+      price: 450,
+      image: 'https://cdn.poehali.dev/projects/7645dc55-ece7-471e-b696-d0442f475ace/files/cb5f6dc9-3f76-4220-8902-c18d5b323da0.jpg',
+      badge: ''
+    },
+    {
+      id: 18,
+      name: 'Тонировочная пленка 5% 0.75м x 3м',
+      category: 'tint-film',
+      price: 1290,
+      image: 'https://cdn.poehali.dev/projects/7645dc55-ece7-471e-b696-d0442f475ace/files/cb5f6dc9-3f76-4220-8902-c18d5b323da0.jpg',
+      badge: ''
+    },
+    {
+      id: 19,
+      name: 'Скотч 3М прозрачный двухсторонний',
+      category: '3m-tape',
+      price: 320,
+      image: 'https://cdn.poehali.dev/projects/7645dc55-ece7-471e-b696-d0442f475ace/files/cb5f6dc9-3f76-4220-8902-c18d5b323da0.jpg',
+      badge: ''
+    },
+    {
+      id: 20,
+      name: 'Хомуты ШРУСА 100шт набор',
+      category: 'clamps',
+      price: 590,
+      image: 'https://cdn.poehali.dev/projects/7645dc55-ece7-471e-b696-d0442f475ace/files/cb5f6dc9-3f76-4220-8902-c18d5b323da0.jpg',
       badge: ''
     }
   ];
 
   const filteredProducts = products.filter(product => {
     const categoryMatch = selectedCategory === 'all' || product.category === selectedCategory;
-    const colorMatch = selectedColor === 'all' || product.color === selectedColor;
-    const compatibilityMatch = selectedCompatibility === 'all' || product.compatibility === selectedCompatibility;
-    return categoryMatch && colorMatch && compatibilityMatch;
+    return categoryMatch;
   });
 
   const handleAddToCart = (product: typeof products[0]) => {
@@ -152,50 +248,35 @@ const Index = () => {
             Каталог продукции
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div className="mb-8">
             <div className="space-y-2">
-              <label className="text-sm font-medium text-muted-foreground">Тип продукции</label>
+              <label className="text-sm font-medium text-muted-foreground">Категория товаров</label>
               <Select value={selectedCategory} onValueChange={setSelectedCategory}>
                 <SelectTrigger className="neon-hover border-primary/50">
                   <SelectValue placeholder="Все категории" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="max-h-[400px]">
                   <SelectItem value="all">Все категории</SelectItem>
-                  <SelectItem value="headlights">Фары</SelectItem>
-                  <SelectItem value="interior">Подсветка салона</SelectItem>
-                  <SelectItem value="underglow">Подсветка днища</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-muted-foreground">Цвет свечения</label>
-              <Select value={selectedColor} onValueChange={setSelectedColor}>
-                <SelectTrigger className="neon-hover border-primary/50">
-                  <SelectValue placeholder="Все цвета" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">Все цвета</SelectItem>
-                  <SelectItem value="blue">Синий</SelectItem>
-                  <SelectItem value="purple">Фиолетовый</SelectItem>
-                  <SelectItem value="orange">Оранжевый</SelectItem>
-                  <SelectItem value="white">Белый</SelectItem>
-                  <SelectItem value="multicolor">RGB / Мультицвет</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-muted-foreground">Совместимость</label>
-              <Select value={selectedCompatibility} onValueChange={setSelectedCompatibility}>
-                <SelectTrigger className="neon-hover border-primary/50">
-                  <SelectValue placeholder="Все автомобили" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">Все автомобили</SelectItem>
-                  <SelectItem value="universal">Универсальные</SelectItem>
-                  <SelectItem value="sedan">Седан</SelectItem>
-                  <SelectItem value="suv">Внедорожник</SelectItem>
+                  <SelectItem value="fog-lights">Штатные LED противотуманные фары</SelectItem>
+                  <SelectItem value="drl">Дневные ходовые огни 12-24V</SelectItem>
+                  <SelectItem value="c5w">C5W (Салон) LED</SelectItem>
+                  <SelectItem value="t10">T10, W16W габариты LED</SelectItem>
+                  <SelectItem value="p21">P21, T4 (стоп, габарит с цоколем) LED</SelectItem>
+                  <SelectItem value="t5-panel">T5, T3, T4, T8.4, T8.5 (панель приборов) LED</SelectItem>
+                  <SelectItem value="led-headlight">LED фарные лампы H1, H3, H4...</SelectItem>
+                  <SelectItem value="24v">Диоды 24V</SelectItem>
+                  <SelectItem value="halogen-torino">Газонаполненные TORINO HOD +50%</SelectItem>
+                  <SelectItem value="koito">Лампы KOITO (Япония)</SelectItem>
+                  <SelectItem value="halogen">Галогеновые автолампы</SelectItem>
+                  <SelectItem value="incandescent">R5W, R10W, P21 (лампы накаливания)</SelectItem>
+                  <SelectItem value="led-strip">Светодиодные ленты 12V</SelectItem>
+                  <SelectItem value="xenon">Ксенон 12V</SelectItem>
+                  <SelectItem value="wipers">Щётки стеклоочистителя</SelectItem>
+                  <SelectItem value="air-freshener">Ароматизаторы</SelectItem>
+                  <SelectItem value="accessories">Автоаксессуары</SelectItem>
+                  <SelectItem value="tint-film">Тонировочная пленка</SelectItem>
+                  <SelectItem value="3m-tape">Скотч 3М прозрачный</SelectItem>
+                  <SelectItem value="clamps">Хомуты ШРУСА, червячные, зажимные</SelectItem>
                 </SelectContent>
               </Select>
             </div>
