@@ -1,14 +1,19 @@
 import { useState } from 'react';
+import { useCart } from '@/contexts/CartContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import Icon from '@/components/ui/icon';
+import Cart from '@/components/Cart';
 
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedColor, setSelectedColor] = useState<string>('all');
   const [selectedCompatibility, setSelectedCompatibility] = useState<string>('all');
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const { addToCart, totalItems } = useCart();
 
   const products = [
     {
@@ -80,6 +85,10 @@ const Index = () => {
     return categoryMatch && colorMatch && compatibilityMatch;
   });
 
+  const handleAddToCart = (product: typeof products[0]) => {
+    addToCart(product);
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <header className="sticky top-0 z-50 backdrop-blur-md bg-background/80 border-b border-primary/20">
@@ -98,8 +107,16 @@ const Index = () => {
               <a href="#about" className="text-foreground hover:text-primary transition-colors">О компании</a>
               <a href="#contacts" className="text-foreground hover:text-primary transition-colors">Контакты</a>
             </nav>
-            <Button className="neon-hover">
+            <Button 
+              className="neon-hover relative" 
+              onClick={() => setIsCartOpen(true)}
+            >
               <Icon name="ShoppingCart" size={20} />
+              {totalItems > 0 && (
+                <span className="absolute -top-2 -right-2 bg-accent text-accent-foreground text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center neon-border animate-pulse-neon">
+                  {totalItems}
+                </span>
+              )}
             </Button>
           </div>
         </div>
@@ -206,7 +223,10 @@ const Index = () => {
                   </p>
                 </CardContent>
                 <CardFooter className="p-6 pt-0">
-                  <Button className="w-full neon-hover bg-primary text-primary-foreground">
+                  <Button 
+                    className="w-full neon-hover bg-primary text-primary-foreground"
+                    onClick={() => handleAddToCart(product)}
+                  >
                     <Icon name="ShoppingCart" size={18} className="mr-2" />
                     В корзину
                   </Button>
@@ -295,6 +315,8 @@ const Index = () => {
           <p>&copy; 2024 LEDauto. Все права защищены.</p>
         </div>
       </footer>
+
+      <Cart open={isCartOpen} onOpenChange={setIsCartOpen} />
     </div>
   );
 };
